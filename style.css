@@ -1,0 +1,59 @@
+html,
+body,
+#main {
+  height: 100%;
+  width: 100%;
+  background-color: #ff5bf4;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#heart-box {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 1vh;
+}
+
+.heart {
+  animation: 0.7s ease-in 0s infinite alternate throb;
+  width: 25px;
+  height: 25px;
+  background: #ff78f6;
+  transform: rotateZ(45deg);
+  position: relative;
+  margin: 40px 40px;
+
+  filter: drop-shadow(2px 2px 2px #c900bc);
+}
+.heart::before,
+.heart::after {
+  content: "";
+  width: 25px;
+  height: 25px;
+  background: #ff78f6;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.heart::before {
+  top: 0;
+  left: -50%;
+}
+
+.heart::after {
+  top: -50%;
+  right: 0;
+}
+
+@keyframes throb {
+  from {
+    transform: rotateZ(45deg) scale(1, 1);
+  }
+  to {
+    transform: rotateZ(45deg) scale(1.2, 1.2);
+  }
+}
