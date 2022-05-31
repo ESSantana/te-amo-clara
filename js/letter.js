@@ -1,27 +1,68 @@
-if (!window.location.href.includes("?password")) {
-  const urlParts = window.location.href.split("/");
-  const baseURL = urlParts.slice(0, urlParts.length - 2).join("/");
-  // window.location.href = baseURL + "/index.html";
+function sendToHomePage() {
+  const baseURL = window.location.href.replace(/\/html\/.+\.html.+/gi, "");
+  console.log(baseURL);
+  window.location.href = baseURL + "/index.html";
 }
 
-var encryptedPassword = window.location.href
-  .split("?")[1]
-  .split("=")[1]
-  .split("&")[0];
-
-console.log(encryptedPassword);
-if (encryptedPassword.length !== 44) {
-  const urlParts = window.location.href.split("/");
-  const baseURL = urlParts.slice(0, urlParts.length - 2).join("/");
-  // window.location.href = baseURL + "/index.html";
-}
-
-fetch("https://vyqcqyrsad.execute-api.sa-east-1.amazonaws.com/dev/auth", {
-  body: JSON.stringify({
-    encryptedPassword
-  }),
-  method: "POST",
-  headers: {
-    'Access-Control-Allow-Origin': '*',
+function checkQueryParameter() {
+  if (!window.location.href.includes("?password")) {
+    sendToHomePage();
   }
-}).then(res => console.log(res.json()));
+
+  var queryParams = window.location.href
+    .split("?")[1]
+    .split("&")
+    .map((param) => {
+      const keyValue = param.split("=");
+      return {
+        key: keyValue[0],
+        value: keyValue[1],
+      };
+    });
+
+  const encryptedPassword = queryParams.find(
+    (qParam) => qParam.key === "password"
+  ).value;
+
+  if (encryptedPassword && encryptedPassword.length !== 43) {
+    sendToHomePage();
+  }
+
+  return encryptedPassword;
+}
+
+async function getToken() {
+  const encryptedPassword = checkQueryParameter();
+  const response = await fetch(
+    "https://vyqcqyrsad.execute-api.sa-east-1.amazonaws.com/dev/auth",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "euteamoclara.com.br",
+        origin: "euteamoclara.com.br",
+        mode: "cors",
+      },
+      body: JSON.stringify({
+        encryptedPassword,
+      }),
+    }
+  );
+  const { token, message } = await response.json();
+
+  if (message && message === "Senha totalmente errada meu nobre") {
+    sendToHomePage();
+  }
+
+  console.log({ token });
+}
+
+async function playMusic() {
+  let audioPlayer = document.createElement("audio");
+  const body = document.getElementsByTagName("body")[0];
+  audioPlayer.src = "assets/music/shine-ncs-release.mp3";
+  audioPlayer.volume = 1;
+  body.appendChild(audioPlayer);
+  audioPlayer.load();
+  audioPlayer.play();
+}
