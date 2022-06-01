@@ -1,7 +1,7 @@
 function sendToHomePage() {
   const baseURL = window.location.href.replace(/\/pages\/.+\.html.+/gi, "");
   console.log(baseURL);
-  window.location.href = baseURL + "/index.html";
+  // window.location.href = baseURL + "/index.html";
 }
 
 function checkQueryParameter() {
@@ -63,8 +63,8 @@ async function getToken() {
 async function playMusic() {
   let audioPlayer = document.createElement("audio");
   const body = document.getElementsByTagName("body")[0];
-  audioPlayer.src = "assets/music/shine-ncs-release.mp3";
-  audioPlayer.volume = 1;
+  audioPlayer.src = "assets/music/bg-music.mp3";
+  audioPlayer.volume = 0.4;
   audioPlayer.loop = true;
   body.appendChild(audioPlayer);
   audioPlayer.load();
