@@ -1,5 +1,5 @@
 function sendToHomePage() {
-  const baseURL = window.location.href.replace(/\/html\/.+\.html.+/gi, "");
+  const baseURL = window.location.href.replace(/\/pages\/.+\.html.+/gi, "");
   console.log(baseURL);
   window.location.href = baseURL + "/index.html";
 }
@@ -52,8 +52,11 @@ async function getToken() {
 
   if (message && message === "Senha totalmente errada meu nobre") {
     sendToHomePage();
+    return;
   }
 
+  const centerDiv = document.getElementsByClassName("center")[0];
+  centerDiv.style.display = "flex";
   console.log({ token });
 }
 
@@ -62,6 +65,7 @@ async function playMusic() {
   const body = document.getElementsByTagName("body")[0];
   audioPlayer.src = "assets/music/shine-ncs-release.mp3";
   audioPlayer.volume = 1;
+  audioPlayer.loop = true;
   body.appendChild(audioPlayer);
   audioPlayer.load();
   audioPlayer.play();
