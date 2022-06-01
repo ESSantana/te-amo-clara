@@ -59,14 +59,3 @@ async function getToken() {
   centerDiv.style.display = "flex";
   console.log({ token });
 }
-
-// async function playMusic() {
-//   let audioPlayer = document.createElement("audio");
-//   const body = document.getElementsByTagName("body")[0];
-//   audioPlayer.src = "../assets/music/bg-music.mp3";
-//   audioPlayer.volume = 0.4;
-//   audioPlayer.loop = true;
-//   body.appendChild(audioPlayer);
-//   audioPlayer.load();
-//   audioPlayer.play();
-// }
