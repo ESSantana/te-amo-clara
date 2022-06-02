@@ -51,7 +51,7 @@ input {
   border-radius: 20px;
   font-size: 2vh;
 }
-#input-password::placeholder{ 
+#input-password::placeholder {
   color: #5d005758;
 }
 

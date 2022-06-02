@@ -4,4 +4,4 @@ const checkPassword = (event) => {
   const urlParts = window.location.href.split("/");
   const baseURL = urlParts.slice(0, urlParts.length - 1).join("/");
   window.location.href = baseURL + `/pages/letter.html?password=${encrypt}`;
-} 
+};

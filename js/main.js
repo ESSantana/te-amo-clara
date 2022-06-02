@@ -1,3 +1,3 @@
-function startScreen(...callbackFunction){
-    callbackFunction.forEach(func => func());
+function startScreen(...callbackFunction) {
+  callbackFunction.forEach((func) => func());
 }

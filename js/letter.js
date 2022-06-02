@@ -20,9 +20,7 @@ function checkQueryParameter() {
       };
     });
 
-  const encryptedPassword = queryParams.find(
-    (qParam) => qParam.key === "password"
-  ).value;
+  const encryptedPassword = queryParams.find((qParam) => qParam.key === "password").value;
 
   if (encryptedPassword && encryptedPassword.length !== 43) {
     sendToHomePage();
@@ -33,21 +31,18 @@ function checkQueryParameter() {
 
 async function getToken() {
   const encryptedPassword = checkQueryParameter();
-  const response = await fetch(
-    "https://vyqcqyrsad.execute-api.sa-east-1.amazonaws.com/dev/auth",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "euteamoclara.com.br",
-        origin: "euteamoclara.com.br",
-        mode: "cors",
-      },
-      body: JSON.stringify({
-        encryptedPassword,
-      }),
-    }
-  );
+  const response = await fetch("https://vyqcqyrsad.execute-api.sa-east-1.amazonaws.com/dev/auth", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Access-Control-Allow-Origin": "euteamoclara.com.br",
+      origin: "euteamoclara.com.br",
+      mode: "cors",
+    },
+    body: JSON.stringify({
+      encryptedPassword,
+    }),
+  });
   const { token, message } = await response.json();
 
   if (message && message === "Senha totalmente errada meu nobre") {
