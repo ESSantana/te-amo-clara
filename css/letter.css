@@ -1,14 +1,19 @@
 img {
   padding: 0 0.5vw;
   margin: 2vh auto;
-  border-radius: 5%;
   filter: drop-shadow(0px 0px 20px #6bc1ff);
+}
+
+.photos:nth-child(n + 2) {
+  width: 300px;
+  object-fit: scale-down;
 }
 
 section {
   justify-content: center;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 /* width */
@@ -43,6 +48,19 @@ section {
   font-size: 7vh;
 }
 
+#div-video {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.video {
+  height: 50vh;
+  object-fit: contain;
+}
+
 .paragraph {
   width: 100%;
   text-align: center;
@@ -67,6 +85,7 @@ section {
 }
 
 .flip-card {
+  margin: 0 auto;
   background-color: transparent;
   width: 400px;
   height: 400px;
@@ -105,4 +124,48 @@ section {
   padding: 0 auto;
   margin: auto 0;
   object-fit: contain;
+}
+
+.card-wraper,
+.card {
+  margin-top: 5vh;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card {
+  background-color: #ffc2fc8c;
+  border-radius: 50px;
+  margin: 1vh 0;
+}
+
+.card:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.card-text {
+  width: 60%;
+  color: rgb(0, 0, 0);
+  margin: 0 auto;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+}
+
+.card-image {
+  width: 30%;
+  height: 300px;
+  filter: none;
+  margin: 0;
+  padding: 2vh 0;
+  object-fit: contain;
+  border-radius: 50px;
+}
+
+@media screen and (max-width: 679px) {
+  video.video {
+    margin: 1vh 0 !important;
+  }
 }
