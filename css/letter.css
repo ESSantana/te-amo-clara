@@ -158,10 +158,11 @@ section {
   width: 30%;
   height: 300px;
   filter: none;
-  margin: 0;
-  padding: 2vh 0;
+  margin: 2vh auto;
   object-fit: contain;
-  border-radius: 50px;
+}
+#composition {
+width: 100%;
 }
 
 @media screen and (max-width: 679px) {

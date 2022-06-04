@@ -13,6 +13,7 @@ async function fillHTML() {
   fillComposition(cloudFrontLink);
   fillText(textComplement);
   fillVideos(cloudFrontLink);
+  startMusic(cloudFrontLink);
 
   const centerDiv = document.getElementsByClassName("center")[0];
   centerDiv.style.display = "flex";
@@ -47,6 +48,14 @@ function fillComposition(cloudFrontLink) {
   const composition = document.getElementById("composition");
   composition.src = `https://${cloudFrontLink}/composition-1.png`;
   composition.setAttribute("alt", "composition-1");
+}
+
+function startMusic(cloudFrontLink) {
+  const music = document.getElementById("bg-music");
+  const sourceNode = document.createElement("source");
+  sourceNode.src = `https://${cloudFrontLink}/bg-music.mp3`;
+  sourceNode.setAttribute("type", "audio/mpeg");
+  music.appendChild(sourceNode);  
 }
 
 function checkQueryParameter() {
