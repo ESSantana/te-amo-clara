@@ -9,32 +9,48 @@ async function fillHTML() {
   const token = await getToken(encryptedPassword);
   const { cloudFrontLink, textComplement } = await getTargetResources(token);
 
-  fillImages(cloudFrontLink);
-  fillComposition(cloudFrontLink);
-  fillText(textComplement);
-  fillVideos(cloudFrontLink);
-  startMusic(cloudFrontLink);
+  addTitles(textComplement);
+  addImages(cloudFrontLink);
+  addTexts(textComplement);
+  addVideos(cloudFrontLink);
+  addMusic(cloudFrontLink);
 
   const centerDiv = document.getElementsByClassName("center")[0];
   centerDiv.style.display = "flex";
 }
 
-function fillImages(cloudFrontLink) {
+function addTitles(textComplement) {
+  const titles = document.getElementsByClassName("title");
+  for (let i = 0; i < titles.length; i++) {
+    titles[i].innerHTML = textComplement.titles[i];
+  }
+}
+
+function addImages(cloudFrontLink) {
   const images = document.getElementsByClassName("photos");
   for (let i = 0; i < images.length; i++) {
     images[i].src = `https://${cloudFrontLink}/${[`photo-${i + 1}`]}.jpg`;
     images[i].setAttribute("alt", `photo-${i + 1}`);
   }
+
+  const composition = document.getElementById("composition");
+  composition.src = `https://${cloudFrontLink}/composition-1.png`;
+  composition.setAttribute("alt", "composition-1");
 }
 
-function fillText(textComplement) {
+function addTexts(textComplement) {
   const paragraphes = document.getElementsByClassName("paragraph");
   for (let i = 0; i < paragraphes.length; i++) {
-    paragraphes[i].innerHTML = textComplement[`paragraph${i + 1}`];
+    paragraphes[i].innerHTML = textComplement.paragraphes[i];
+  }
+
+  const cards = document.getElementsByClassName("card-text");
+  for (let i = 0; i < cards.length; i++) {
+    cards[i].innerHTML = textComplement.cards[i];
   }
 }
 
-function fillVideos(cloudFrontLink) {
+function addVideos(cloudFrontLink) {
   const videos = document.getElementsByClassName("video");
   for (let i = 0; i < videos.length; i++) {
     const sourceNode = document.createElement("source");
@@ -44,18 +60,12 @@ function fillVideos(cloudFrontLink) {
   }
 }
 
-function fillComposition(cloudFrontLink) {
-  const composition = document.getElementById("composition");
-  composition.src = `https://${cloudFrontLink}/composition-1.png`;
-  composition.setAttribute("alt", "composition-1");
-}
-
-function startMusic(cloudFrontLink) {
+function addMusic(cloudFrontLink) {
   const music = document.getElementById("bg-music");
   const sourceNode = document.createElement("source");
   sourceNode.src = `https://${cloudFrontLink}/bg-music.mp3`;
   sourceNode.setAttribute("type", "audio/mpeg");
-  music.appendChild(sourceNode);  
+  music.appendChild(sourceNode);
 }
 
 function checkQueryParameter() {
@@ -112,6 +122,12 @@ async function getTargetResources(token) {
   });
 
   const parsedResponse = await response.json();
+
+  if (parsedResponse.error !== undefined && parsedResponse.error === "Unauthorized expired token") {
+    sendToHomePage();
+    return;
+  }
+
   return {
     ...parsedResponse,
   };
