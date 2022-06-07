@@ -182,8 +182,24 @@ section {
 .card {
   font-size: 1.5em;
 }
-#the-end > .photos { 
+#the-end {
   width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#the-end > .photos { 
+  width: 40%;
+  object-fit: contain;
+}
+
+#the-end > .paragraph { 
+  width: 100%;
+  height: 40%;
+  object-fit: contain;
 }
 
 .btn {
@@ -225,4 +241,7 @@ section {
     margin: 2vh 0;
     text-align: center;
   }
+  #the-end > .photos { 
+  width: 80%;
+}
 }
