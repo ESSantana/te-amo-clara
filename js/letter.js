@@ -1,13 +1,16 @@
+let cloudfrontContext = "";
+
 function sendToHomePage() {
   const baseURL = window.location.href.replace(/\/pages\/.+\.html.+/gi, "");
-  console.log(baseURL);
   window.location.href = baseURL + "/index.html";
 }
 
 async function fillHTML() {
   const encryptedPassword = checkQueryParameter();
   const token = await getToken(encryptedPassword);
+
   const { cloudFrontLink, textComplement } = await getTargetResources(token);
+  cloudfrontContext = cloudFrontLink;
 
   addTitles(textComplement);
   addImages(cloudFrontLink);
@@ -131,4 +134,10 @@ async function getTargetResources(token) {
   return {
     ...parsedResponse,
   };
+}
+
+function btnYes() {
+  const baseURL = window.location.href.replace(/\/pages\/.+\.html.+/gi, "");
+  localStorage.setItem("cloudfront", cloudfrontContext);
+  window.location.href = baseURL + "/pages/iloveu.html";
 }

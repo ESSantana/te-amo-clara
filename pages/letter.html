@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../css/style.css" />
     <link rel="stylesheet" href="../css/letter.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="../js/main.js"></script>
     <script src="../js/heart.js"></script>
     <script src="../js/letter.js"></script>
@@ -20,7 +19,7 @@
       <div class="center" style="display: none">
         <div class="content">
           <section id="the-start">
-            <h1 id="header" class="title">Lorem impsun</h1>
+            <h1 id="header" class="title"></h1>
             <audio id="bg-music" controls></audio>
             <p class="paragraph"></p>
             <div id="flip-div">
@@ -75,10 +74,20 @@
             </div>
           </section>
 
-          <section id="the-end">
-            <h3 class="title">Musa</h3>
+          <section id="sec-composition">
+            <h3 class="title"></h3>
             <img id="composition" />
           </section>
+
+          <section id="the-end">
+            <img class="photos" />
+            <p class="paragraph"></p>
+          </section>
+
+          <div id="div-btn">
+            <button onclick="btnYes()" class="btn">Sim</button>
+            <button onclick="alert('Rai ai, maluco também mata viu! Hum...')" class="btn">Não</button>
+          </div>
 
           <div id="gamb-space"></div>
         </div>

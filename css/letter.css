@@ -55,6 +55,14 @@ section {
   width: 100%;
 }
 
+#div-btn{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .photos:nth-child(n + 2) {
   width: 300px;
   object-fit: scale-down;
@@ -173,6 +181,23 @@ section {
 .paragraph,
 .card {
   font-size: 1.5em;
+}
+
+.btn {
+  width: 30%;
+  height: 5vh;
+  background-color: #ff07ee;
+  color: #fff;
+  font-size: 1.5em;
+  font-family: "Pacifico", cursive;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: #cf00c1;
 }
 
 @media screen and (max-width: 679px) {
