@@ -182,6 +182,9 @@ section {
 .card {
   font-size: 1.5em;
 }
+#the-end > .photos { 
+  width: 100%;
+}
 
 .btn {
   width: 30%;

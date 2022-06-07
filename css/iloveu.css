@@ -1,3 +1,8 @@
 .center { 
   height: 100%;
 }
+
+#monkey-smile {
+  width: 80%;
+  margin: 0 auto;
+}
